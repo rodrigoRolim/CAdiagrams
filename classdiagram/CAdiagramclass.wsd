@@ -1,0 +1,30 @@
+@startuml
+left to right direction
+class Document {
+    -name
+    -
+
+}
+class student
+class professor
+class group
+class item
+class documentController
+class studentController
+class professorController
+interface Score {
+    calcularPontosPorGrupo()
+    calcularPontosTotal()
+}
+document -- group
+group o-- item: have >
+documentController -- document
+
+student -- studentController
+professor -- professorController
+
+professor -- student
+student -- Document
+
+Score <.. documentController
+@enduml

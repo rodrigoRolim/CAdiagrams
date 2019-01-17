@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+skinparam packagestyle rectangle
+actor professor
+rectangle "gerenciamento de documentos" {
+    professor -- (visualizar documentação)
+    professor -- (receber documento)
+    professor -- (aprovar documentos)
+    professor -- (reprovar documentos)
+    (visualizar documentação) ..> (Efetuar login): <<includes>
+    (aprovar documentos) ..> (Efetuar login): <<includes>
+    (reprovar documentos) ..> (Efetuar login): <<includes>
+}
+
+@enduml
