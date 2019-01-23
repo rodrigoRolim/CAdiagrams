@@ -1,31 +1,64 @@
 @startuml
-left to right direction
-class Document {
+
+hide members
+class Document <<Entity>>{
     -name: string
     -ra: string
     -document: Document
 }
-class student
-class professor
-class group
-class item
-class documentController
-class studentController
-class professorController
+class student <<Entity>> { 
 
+}
+class professor <<Entity>> {
+
+}
+class group <<Entity>> {
+
+}
+class item <<Entity>> {
+
+}
+class documentController <<(C, #00bfff)Controller>> {
+
+}
+class studentController <<(C, #00bfff)Controller>> {
+
+}
+class professorController <<(C, #00bfff)Controller>> {
+
+}
+class professorRoutes <<(R, #ff0040)Route>> {
+
+}
+class studentRoutes <<(R, #ff0040)Route>> {
+
+}
+class documentRoutes  <<(R, #ff0040)Route>> {
+
+}
+class groupController <<(C, #00bfff) Controller>> {
+
+}
+class groupRouter <<(R, #ff0040)Route>> {
+
+}
 interface Score {
     calcularPontosPorGrupo()
     calcularPontosTotal()
 }
 Document "1" --- "0..*" group
 group o-- item: have >
-documentController -- Document
+documentController <.. Document
 
-student -- studentController
-professor -- professorController
+student ..> studentController
+professor ..> professorController
 professor "1..*" -- "1" student
 student "0..*" -- "1" Document
 
-
-Score <.. documentController
+documentController ..> documentRoutes
+studentController ..> studentRoutes
+professorController ..> professorRoutes
+groupController <.. group
+groupController ..> groupRouter
+Score <|.. documentController: <<implments>>
 @enduml
