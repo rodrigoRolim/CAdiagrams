@@ -1,0 +1,28 @@
+@startuml
+actor Professor
+boundary "Tela de login" as login
+control  ProfessorController
+entity ProfessorEntity
+
+Professor -> login: Solicitar acesso a conta
+activate login
+login -> ProfessorController: Requisitar Autenticação
+activate ProfessorController
+
+ProfessorController -> ProfessorEntity: Buscar professor
+    activate ProfessorEntity
+    alt successful case
+        
+        ProfessorEntity --> ProfessorController: professor encontrado
+        'deactivate ProfessorController
+        ProfessorController --> login: Professor Autenticado
+        login --> Professor: Acesso permitido     
+    else some kind of failure
+        
+        ProfessorEntity --> ProfessorController: professor não encontrado
+        deactivate ProfessorEntity
+        login <-- ProfessorController: Não Autenticado
+        login --> Professor: Acesso não permitido
+end
+
+@enduml
