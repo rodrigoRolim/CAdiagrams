@@ -1,0 +1,21 @@
+@startuml
+actor Admin
+boundary "tela de gerenciamento de professores" as professor
+control ProfessorController 
+entity ProfessorEntity
+
+Admin ->> professor: acessar lista de professores
+activate Admin
+activate professor
+professor ->> ProfessorController: solicitar lista de professores
+activate ProfessorController
+ProfessorController -> ProfessorEntity: buscar por todos os professores
+deactivate ProfessorController
+activate ProfessorEntity
+ProfessorEntity --> ProfessorController: lista com todos os professores
+deactivate ProfessorEntity
+activate ProfessorController
+ProfessorController -->> professor: confirmação com lista de professores
+deactivate ProfessorController
+professor -->> Admin: exibir lista de professores 
+@enduml
