@@ -25,10 +25,9 @@ ProfessorController -> ProfessorEntity: Buscar professor
             login --> Professor: Acesso não permitido
         end
        
-    else Professor não existe
+    else Professor não cadastrado
         
         ProfessorEntity --> Professor: professor não encontrado
         deactivate ProfessorEntity
 end
-
 @enduml

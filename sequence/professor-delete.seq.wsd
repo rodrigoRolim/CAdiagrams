@@ -18,4 +18,6 @@ activate ProfessorController
 ProfessorController -->> professor: confirmação com lista de professores
 deactivate ProfessorController
 professor -->> Admin: exibir lista de professores 
+deactivate professor
+deactivate Admin
 @enduml

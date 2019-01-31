@@ -1,6 +1,6 @@
 @startuml
 actor Aluno
-boundary "adição de documento" as addDoc
+boundary "cadastro de documento" as addDoc
 control DocumentController
 entity DocumentEntity
 
@@ -11,7 +11,7 @@ activate DocumentController
 addDoc ->> DocumentController: verificar se nome ja existe
 DocumentController -> DocumentEntity: buscar documento pelo nome entrado
 activate DocumentEntity
-alt documento encontrado
+alt nome de documento não em uso
     DocumentEntity --> DocumentController: não encontrado
     deactivate DocumentEntity
     DocumentController -->> addDoc: nome não usado
