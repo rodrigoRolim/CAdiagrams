@@ -20,4 +20,21 @@ deactivate ProfessorController
 professor -->> Admin: exibir lista de professores 
 deactivate professor
 deactivate Admin
+
+Admin ->> professor: excluir um professor da lista
+activate Admin
+activate professor
+professor ->> ProfessorController: requisitar a exclusão de professor
+activate ProfessorController
+ProfessorController -> ProfessorEntity: excluir professor
+deactivate ProfessorController
+activate ProfessorEntity
+ProfessorEntity --> ProfessorController: excluído
+deactivate ProfessorEntity
+activate ProfessorController
+ProfessorController -->> professor: responder requisição com 'ok'
+deactivate ProfessorController
+professor -->> Admin: professor excluído com sucesso
+deactivate professor
+deactivate Admin
 @enduml
