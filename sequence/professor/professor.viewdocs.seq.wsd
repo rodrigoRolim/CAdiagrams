@@ -1,0 +1,16 @@
+@startuml
+actor Professor
+boundary "tela principal" as home
+boundary "tela de documentos do aluno" as documentos
+control DocumentController as controller
+entity DocumentEntity as model
+
+Professor ->> home: selecionar aluno
+home ->> documentos: direcionar
+documentos ->> controller: requisitar documentos do aluno
+controller ->> model: buscar documentos do aluno
+model -->> controller: retornar lista de documentos
+controller -->> documentos: responder com a lista de documentos
+documentos -->> Professor: exibir lista de documentos
+
+@enduml

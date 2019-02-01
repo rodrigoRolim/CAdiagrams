@@ -2,9 +2,11 @@
 left to right direction
 skinparam packagestyle rectangle
 actor professor
+actor aluno
 rectangle "gerenciamento de documentos" {
     professor -- (visualizar documentação)
     professor -- (receber documento)
+    (receber documento) -- aluno
     professor -- (aprovar documentos)
     professor -- (reprovar documentos)
     (visualizar documentação) ..> (Efetuar login): <<includes>
