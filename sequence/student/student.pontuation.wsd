@@ -1,0 +1,14 @@
+@startuml
+actor Aluno
+boundary "tela principal" as home
+control DocumentController as controller
+entity DocumentEntity as model
+
+Aluno ->> home: ver pontos
+home ->> controller: requisitar todos os documentos do aluno
+controller ->> model: buscar por todos os documentos do aluno
+model -->> controller: lista de documentos do aluno
+controller -->> home: responder com lista de documentos
+home ->> home: calcular pontuacao do aluno
+home -->> Aluno: exibir pontuação ao aluno 
+@enduml

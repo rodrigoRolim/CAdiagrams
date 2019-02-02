@@ -14,10 +14,4 @@ StudentEntity -->> StudentController: lista de alunos
 StudentController -->> home: responder com a lista de alunos
 home --> Professor: exibir lista de alunos
 
-'Professor ->> home: selecionar um aluno
-'home ->> documentos: direcionar
-'documentos ->> DocumentController: requisitar por todos os documentos deste aluno
-'DocumentController ->> DocumentEntity: buscar por todos os documentos deste aluno
-'DocumentEntity -->> DocumentController: retornar lista de documentos do aluno
-'DocumentController -->> documentos: responder com a lista de documentos
 @enduml
