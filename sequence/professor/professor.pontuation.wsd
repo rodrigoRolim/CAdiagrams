@@ -21,7 +21,7 @@ home --> Professor: exibir lista de alunos
 activate home
 activate Professor
 Professor ->> home: selecionar aluno da lista
-deactivate home
+deactivate home 
 deactivate Professor
 home -> home: calcular pontuação do aluno
 activate home

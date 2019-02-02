@@ -5,10 +5,18 @@ control DocumentController as controller
 entity DocumentEntity as model
 
 Aluno ->> home: ver pontos
+activate Aluno
+activate home
 home ->> controller: requisitar todos os documentos do aluno
-controller ->> model: buscar por todos os documentos do aluno
-model -->> controller: lista de documentos do aluno
+activate controller
+controller -> model: buscar por todos os documentos do aluno
+deactivate controller
+activate model
+model --> controller: lista de documentos do aluno
+deactivate model
+activate controller
 controller -->> home: responder com lista de documentos
+deactivate controller
 home ->> home: calcular pontuacao do aluno
 home -->> Aluno: exibir pontuação ao aluno 
 @enduml
