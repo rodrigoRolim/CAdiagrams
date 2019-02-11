@@ -1,0 +1,16 @@
+@startuml
+class student {
+    _id: number
+    ra: String
+    name: String
+    graduation: course
+    document: document
+    password: encrypted
+    picture: binary
+}
+document o-- group
+group o-- items
+document o-- student
+student o-- course
+student -- professor 
+@enduml
