@@ -1,4 +1,5 @@
 @startuml
+left to right direction
 class student {
     _id: number
     ra: String
@@ -8,9 +9,38 @@ class student {
     password: encrypted
     picture: binary
 }
+class document {
+    _id: number
+    name: string
+    score: integer
+    avaliation: bit
+    sent: boolean
+    group: group
+    document: binary
+}
+class group {
+    _id: number
+    name: string
+    item: items
+}
+class items {
+    _id: number
+    description: text 
+}
+class professor {
+    _id: number
+    siape: string
+    name: string
+    responsible: course
+}
+class course {
+    _id: number
+    name: string
+}
 document o-- group
 group o-- items
 document o-- student
 student o-- course
-student -- professor 
+student -- professor
+professor o--- course 
 @enduml
