@@ -1,0 +1,7 @@
+@startuml
+actor Admin
+boundary "tela principal" as grupo
+control ItemController
+entity GroupEntity
+
+@enduml

@@ -9,7 +9,7 @@ class student {
     password: encrypted
     picture: binary
 }
-class document {
+class documents {
     _id: number
     name: string
     score: integer
@@ -37,10 +37,10 @@ class course {
     _id: number
     name: string
 }
-document o-- group
+documents o-- group
 group o-- items
-document o-- student
-student o-- course
+documents --o student
+student -- course
 student -- professor
-professor o--- course 
+professor --- course 
 @enduml

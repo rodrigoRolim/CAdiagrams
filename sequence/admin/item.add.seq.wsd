@@ -1,0 +1,7 @@
+@startuml
+actor Admin
+boundary "cadastro de item" as grupo
+control ItemController
+entity GroupEntity
+
+@enduml
