@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+ <title>Document</title>
+ <style>
+   .modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.modal-default-button {
+  margin: 5px;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+  .header {
+    border-bottom: 1px solid rgba(133, 198, 241, 0.692);
+    line-height: 1;
+    background-color: rgb(255, 255, 255);
+    padding: 8px 0px;
+    display: flex;
+    flex-direction: row;
+  }
+  body{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, Arial, sans-serif;
+    font-weight: 400;
+  }
+  .painel {
+    display: flex;
+    flex-direction: row;
+    width: 20%;
+    align-self: flex-end;
+    margin-right: 25px;
+  }
+  .logo {
+    border: 1px solid #7e7e7e;
+    border-radius: 100%;
+    padding: 25px;
+    align-self: center;
+  }
+  .menu {
+    align-self: center;
+    margin-right: 50px;
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+  }
+
+  .not, .fol {
+    color: 	rgba(0, 119, 255, 0.986);  
+    cursor: pointer;
+  }
+  .not {
+    margin-right: 10px;
+  }
+  .fol {
+    border: 1px solid;
+    border-radius: 4px;
+    background-color: #3accf05e;
+    padding: 5px 8px;
+    margin-left: 10px;
+  }
+  .not .material-icons, .fol .material-icons {
+   
+    font-size: 1.5rem;
+  }
+  .fol .material-icons {
+    color: white
+  }
+  .not  .material-icons {
+    color: white
+  }
+  .not {
+    border: 1px solid #edf03a;
+    background-color:  #edf03a5e;
+    padding: 5px;
+    border-radius: 4px;
+  }
+  .logout {
+   align-self: center;
+   width: 80%;
+  }
+  .logout button {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 8px;
+    margin-left: 100px;
+    background-color:#f03a685e;
+    border: 1px solid #f03a67; 
+    color: white;
+    border-radius: 4px;
+  }
+  .rot-logout {
+    align-self: center;
+  }
+  footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding: 10px 0px;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(196, 192, 192, 0.03);
+    align-items: center;
+  }
+  .documents {
+    margin-top: 90px;
+    display: flex;
+    flex-direction: column; 
+  }
+  .documents span {
+    padding: 10px;
+  }
+  .progress {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 60%;
+    background-color: white;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+  }
+  .progress img {
+    margin:0;
+    padding:0;
+    width: 120px;
+    height: 120px;
+  }
+  .progress img:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+  .progress img:last-child{
+    margin-left: 50px;
+  }
+  figure {
+    display: flex;
+    flex-direction: column;
+    margin:20px;
+  }
+  figure figcaption {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.8rem;
+    font-family: Arial, Helvetica, sans-serif;
+  
+  }
+  a {
+    text-decoration: none;
+  }
+  .foto {
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 80px;
+    height: 80px;
+    border: 1px solid  rgba(0,0,0,.7);
+    border-radius: 100%;
+    margin: 10px;
+  }
+  .perfil-aluno {
+    width: 60%;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2);
+  }
+  .informations {
+    vertical-align: center;
+    align-self: center;
+    margin-left: 20px;
+    padding: 0;
+    color: rgba(0,0,0,.7);
+    border-radius: 4px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  .trio {
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+  }
+  .perfil-container, .documents-container, .progress-container {
+   background-color: white;
+   
+  }
+  .perfil-container {
+   width: 30%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   border-right: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .documents-container {
+   display:flex;
+   flex-direction: column;
+   width: 60%;
+  }
+  .group-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 30%;
+   border-left: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .description {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+  }
+  .group-box {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(180, 178, 178, 0.781);
+    margin: 10px 12px;
+    border-radius: 2px;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.05);
+  }
+  .btns-items {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  .btns-items button {
+    margin: 5px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  #delete-group {
+    background-color: rgba(252, 84, 84, 0.678);
+    color: white;
+    font-weight: bold;
+  }
+  .perfil {
+   border: 1px solid;
+   width: 140px;
+   height: 160px;
+   border-radius: 4px;
+   margin: 20px 0;
+  }
+  .header-table {
+   font-size: 0.9rem;
+   display: flex;
+   flex-direction: row;
+   background-color: white;
+  }
+  .header-table  span {
+   margin:0;
+   border-left: 1px solid rgba(0, 0, 0, 0.05);
+   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+   padding: 10px 20px;
+  }
+  .header-table span:hover {
+   border-left: 1px solid transparent;
+   border-bottom: 1px solid transparent;
+   cursor: pointer;
+   box-shadow: inset 0 2px 2px 0 rgba(0, 0, 0, 0.05)
+  }
+  #entry-box {
+    width: 100%;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+   }
+   .add_course {
+     display: flex;
+     align-self: flex-end;
+   }
+  .table {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 50px 0;
+  }
+  table {
+    font-family: arial, sans-serif;
+    font-size: 0.95rem;
+    border-collapse: collapse;
+    width: 95%;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  td, th {
+   text-align: left;
+   padding: 8px;
+  }
+  tbody {
+    padding: 0px 8px;
+    display: block;
+    max-height: 400px;
+    overflow: auto;
+  }
+  thead, tbody tr {
+    display: table;
+    width:100%;
+    table-layout:fixed;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+}
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+      background: #888; 
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+      background: #555; 
+  }
+  thead {
+    width: calc( 100% - 1em )
+  }
+  tbody tr {
+   border-bottom: 1px solid rgba(107, 107, 107, 0.692);
+  }
+  tr{
+   cursor: pointer;
+   margin: 5px 0;
+  }
+  .title-table {
+   align-self: center;
+  }
+  .search-doc {
+    width: 40%;
+    height: 40px;
+    margin-right: 20px;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+  }
+  .search-doc input {
+    width: 100%;
+    padding: 7px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    margin-left: 10px;
+  }
+  .tabs {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  input, select {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid;
+    padding: 8px 5px;
+  }
+ </style>
+</head>
+<body>
+  <script type="text/x-template" id="modal-template">
+    <transition name="modal">
+        <div class="modal-mask">
+            <div class="modal-wrapper">
+              <div class="modal-container">
+      
+                <div class="modal-header">
+                  <slot name="header">
+                    <h3>Novo Grupo</h3>
+                  </slot>
+                </div>
+      
+                <div class="modal-body">
+                  <slot name="body">
+                    <label for="name">decrição</label>
+                    <textarea name="name" id="name" cols="30" rows="10"></textarea>
+                    <label for="siape">pontuação mínima</label>
+                    <input type="text" name="siape" id="siape">
+                    <label for="email">pontuação máxima</label>
+                    <input type="text" name="email" id="email">
+                  </slot>
+                </div>
+      
+                <div class="modal-footer">
+                  <slot name="footer">
+                    
+                    <button class="modal-default-button" @click="$emit('close')">
+                      cancelar
+                    </button>
+                    <button class="modal-default-button" @click="$emit('close')">
+                      confirmar  
+                    </button>
+                  </slot>
+                </div>
+              </div>
+            </div>
+          </div>
+    </transition>
+  </script>
+  <nav class="header">
+    <div class="logout">
+        <button>
+          <i class="material-icons">
+            exit_to_app
+          </i> <span class="rot-logout">Logout</span>
+        </button>
+    </div>
+    <div class="painel">
+      <div class="menu">
+          <span class="not" title="novo documento">
+            <i class="material-icons">
+              home
+            </i>
+          </span>
+      </div>
+      <span class="logo"></span>
+    </div>
+  </nav>
+
+  <div class="container">
+   <div class="trio">
+    <div class="perfil-container">
+     <span class="perfil"></span>
+     <span>Professor responsável</span>
+     <div class="edit-btn-teach">
+         <button @click="showModal = true">substituir</button>
+     </div>
+    </div>
+    <div class="documents-container">
+     <div class="header-table">
+      <div class="search-doc">
+        <input type="text" placeholder="pesquisar o curso">
+      </div>
+     </div>
+      <div id="entry-box">
+        <div class="title-table"><h2>Cursos</h2></div>
+        <div class="add_course">
+          <button @click="showModal = true">novo curso</button>
+          <modal v-if="showModal" @close="showModal = false"></modal>
+        </div>
+        <div class="table">
+         <table id="app">
+          <thead>
+           <tr>
+            <th>nome do curso</th>
+           </tr>
+          </thead>
+          <tbody>
+           <tr v-key:documents.id title="visualizar" v-for="degree in degrees">
+             <td>{{degree.name}}</td>
+           </tr>
+          </tbody>
+         </table>
+       </div>
+   </div>
+    </div>
+    <div class="group-container">
+     <h3>Grupos de Atividades</h3>
+     <button @click="showModal = true">adicionar grupo</button>
+     <div class="group-box">
+       <h4>grupo 1</h4>
+       <div class="description">
+         <p>atividades de complementação da formação social, humana
+          e cultural</p>
+       </div>
+       <div class="btns-items">
+         <button id="delete-group">excluir</button>
+         <button id="view-items">Itens &#9663;</button>
+       </div>
+     </div>
+     <div class="group-box">
+      <h4>grupo 2</h4>
+      <div class="description">
+        <p>atividades de cunho comunitário e de interesse coletivo</p>
+      </div>
+      <div class="btns-items">
+        <button id="delete-group">excluir</button>
+        <button id="view-items">Itens &#9663;</button>
+      </div>
+    </div>
+    <div class="group-box">
+      <h4>grupo 3</h4>
+      <div class="description">
+        <p>atividades de iniciação científica, tecnológica e de formação
+          profissional</p>
+      </div>
+      <div class="btns-items">
+        <button id="delete-group">excluir</button>
+        <button id="view-items">Itens &#9663;</button>
+      </div>
+    </div>
+       
+    </div>
+   </div>
+  </div>
+  <footer>
+    <p>eu sou o rodape</p>
+  </footer>
+</body>
+<script>
+  Vue.component('modal', {
+    template: '#modal-template'
+  })
+  var documents = new Vue({
+    el: '.container',
+    data: {
+      degrees: [
+        {id: 0, name: 'engenharia de software', },
+        {id: 1, name: 'engenharia de automação e controle', },
+        {id: 2, name: 'engenharia elétrica-industrial', },
+        {id: 3, name: 'engenharia da computação', },
+        {id: 4, name: 'engenharia mecânica', },
+        {id: 5, name: 'engenharia eletrônica', },
+        {id: 6, name: 'análise e desenvolvimento de sistemas', },
+        {id: 7, name: 'licenciatura em matemática', },
+      ],
+      showModal: false
+    }
+  })
+</script>
+</html>s

@@ -1,0 +1,7 @@
+@startuml
+Class Professor 
+Class ProfessorPersistency {
+ void crud()
+}
+ProfessorPersistency ..> Professor 
+@enduml
