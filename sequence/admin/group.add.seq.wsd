@@ -12,7 +12,9 @@ deactivate grupo
 activate GroupController
 GroupController -> GroupEntity: confirmar cadastro de grupo
 deactivate GroupController
+activate GroupEntity
 GroupEntity -->> GroupController: mensagem de confirmação
+deactivate GroupEntity
 activate GroupController
 GroupController -->> grupo: enviar mensagem de confirmação
 deactivate GroupController

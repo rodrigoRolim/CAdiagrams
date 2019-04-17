@@ -373,6 +373,7 @@
             <th>item</th>
             <th>pontos</th>
             <th>data</th>
+            <th>comentários</th>
            </tr>
           </thead>
           <tbody>
@@ -381,6 +382,7 @@
              <td>{{document.item}}</td>
              <td>{{document.score}}</td>
              <td>{{document.data}}</td>
+             <td>{{document.comments}}</td>
            </tr>
           </tbody>
          </table>
@@ -405,14 +407,14 @@
     el: '.container',
     data: {
       documents: [
-        {id: 0, name: 'atividade 1', item: 'I', score: 5, data: '12/09/2018'},
-        {id: 1, name: 'atividade 1', item: 'II', score: 5, data: '12/09/2018'},
-        {id: 2, name: 'atividade 1', item: 'I', score: 5, data: '12/09/2018'},
-        {id: 3, name: 'atividade 1', item: 'IV', score: 5, data: '12/09/2018'},
-        {id: 0, name: 'atividade 1', item: 'I', score: 5, data: '12/09/2018'},
-        {id: 1, name: 'atividade 1', item: 'II', score: 5, data: '12/09/2018'},
-        {id: 2, name: 'atividade 1', item: 'I', score: 5, data: '12/09/2018'},
-        {id: 3, name: 'atividade 1', item: 'IV', score: 5, data: '12/09/2018'},
+        {id: 0, name: 'atividade 1', item: 'I', score: 5, data: '12/09/2018', comments: 'grupo errado'},
+        {id: 1, name: 'atividade 1', item: 'II', score: 5, data: '12/09/2018', comments: 'item errado'},
+        {id: 2, name: 'atividade 1', item: 'I', score: 5, data: '12/09/2018', comments: 'grupo errado'},
+        {id: 3, name: 'atividade 1', item: 'IV', score: 5, data: '12/09/2018', comments: 'grupo errado'},
+        {id: 0, name: 'atividade 1', item: 'I', score: 5, data: '12/09/2018', comments: 'grupo errado'},
+        {id: 1, name: 'atividade 1', item: 'II', score: 5, data: '12/09/2018', comments: 'grupo errado'},
+        {id: 2, name: 'atividade 1', item: 'I', score: 5, data: '12/09/2018', comments: 'grupo errado'},
+        {id: 3, name: 'atividade 1', item: 'IV', score: 5, data: '12/09/2018', comments: 'grupo errado'},
       ]
     }
   })
