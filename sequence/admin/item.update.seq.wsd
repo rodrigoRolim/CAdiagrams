@@ -5,13 +5,13 @@ boundary "atualização de item" as grupo
 control ItemController
 entity ItemEntity
 
-Admin ->> grupo: tentar cadastrar um item
+Admin ->> grupo: tentar alterar um item
 activate Admin
 activate grupo
-grupo -> ItemController: solicitar cadastro do grupo
+grupo -> ItemController: solicitar alteração do item
 deactivate grupo
 activate ItemController
-ItemController -> ItemEntity: confirmar cadastro do grupo
+ItemController -> ItemEntity: confirmar alteração do item
 deactivate ItemController
 activate ItemEntity
 ItemEntity -->> ItemController: mensagem de confirmação

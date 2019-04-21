@@ -7,9 +7,11 @@
  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.0.943/build/pdf.min.js"></script>
+ <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
  <title>Document</title>
  <style>
-   .modal-mask {
+      .modal-mask {
   position: fixed;
   z-index: 9998;
   top: 0;
@@ -30,7 +32,7 @@
   flex-direction: column;
   width: 300px;
   margin: 0px auto;
-  padding: 20px 30px;
+  padding: 0;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
@@ -46,7 +48,7 @@
 .modal-body {
   display: flex;
   flex-direction: column;
-  margin: 20px 0;
+  margin: 0;
 }
 .modal-footer {
   display: flex;
@@ -143,7 +145,7 @@
   .not {
     border: 1px solid #edf03a;
     background-color:  #edf03a5e;
-    padding: 5px;
+    padding: 5px 8px;
     border-radius: 4px;
   }
   .logout {
@@ -259,7 +261,7 @@
    
   }
   .perfil-container {
-   width: 30%;
+   width: 20%;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -270,46 +272,12 @@
    flex-direction: column;
    width: 60%;
   }
-  .group-container {
+  .progress-container {
+   width: 20%;
    display: flex;
    flex-direction: column;
    align-items: center;
-   width: 30%;
-   border-left: 1px solid rgba(0, 0, 0, 0.1);
-  }
-  .description {
-    display: flex;
-    flex-direction: row;
-    width: 90%;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
-  }
-  .group-box {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid rgba(180, 178, 178, 0.781);
-    margin: 10px 12px;
-    border-radius: 2px;
-    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.05);
-  }
-  .btns-items {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-  .btns-items button {
-    margin: 5px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-  }
-  #delete-group {
-    background-color: rgba(252, 84, 84, 0.678);
-    color: white;
-    font-weight: bold;
+   border-left: 1px solid rgba(0, 0, 0, 0.1);;
   }
   .perfil {
    border: 1px solid;
@@ -344,10 +312,6 @@
     justify-content: center;
     background-color: white;
    }
-   .add_course {
-     display: flex;
-     align-self: flex-end;
-   }
   .table {
    width: 100%;
    display: flex;
@@ -369,7 +333,7 @@
   tbody {
     padding: 0px 8px;
     display: block;
-    max-height: 400px;
+    max-height: 200px;
     overflow: auto;
   }
   thead, tbody tr {
@@ -381,41 +345,39 @@
     width: 10px;
 }
 
-  /* Track */
-  ::-webkit-scrollbar-track {
-      background: #f1f1f1; 
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-      background: #888; 
-  }
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
 
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-      background: #555; 
-  }
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
   thead {
     width: calc( 100% - 1em )
   }
   tbody tr {
    border-bottom: 1px solid rgba(107, 107, 107, 0.692);
   }
-  tr{
+  td:hover{
    cursor: pointer;
-   margin: 5px 0;
   }
   .title-table {
    align-self: center;
   }
   .search-doc {
-    width: 40%;
-    height: 40px;
+    width: 30%;
     margin-right: 20px;
     align-self: flex-end;
     display: flex;
     flex-direction: row;
-    justify-content: right;
+    justify-content: center;
     align-items: center;
   }
   .search-doc input {
@@ -423,7 +385,6 @@
     padding: 7px 12px;
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 4px;
-    margin-left: 10px;
   }
   .tabs {
     width: 70%;
@@ -431,58 +392,48 @@
     flex-direction: row;
     justify-content: flex-start;
   }
-  input, select {
-    width: 100%;
-    border-radius: 4px;
-    border: 1px solid;
-    padding: 8px 5px;
+  #the-canvas {
+    border: 1px solid transparent
   }
  </style>
 </head>
 <body>
-  <script type="text/x-template" id="modal-template">
-    <transition name="modal">
-        <div class="modal-mask">
-            <div class="modal-wrapper">
-              <div class="modal-container">
-      
-                <div class="modal-header">
-                  <slot name="header">
-                    <h3>Novo Professor responsável</h3>
-                  </slot>
-                </div>
-      
-                <div class="modal-body">
-                  <slot name="body">
-                    <label for="name">nome</label>
-                    <input type="text" name="name" id="name" v-model="name_course">
-                    <label for="siape">siape</label>
-                    <input type="text" name="siape" id="siape">
-                    <label for="email">email</label>
-                    <input type="text" name="email" id="email">
-                    <label for="password">senha</label>
-                    <input type="text" name="password" id="password">
-                    <label for="confirm-password">confirmar senha</label>
-                    <input type="text" name="confirm-password" id="confirm-password">
-                  </slot>
-                </div>
-      
-                <div class="modal-footer">
-                  <slot name="footer">
-                    
-                    <button class="modal-default-button" @click="$emit('close')">
-                      cancelar
-                    </button>
-                    <button class="modal-default-button" @click="$emit('close')">
-                      confirmar  
-                    </button>
-                  </slot>
+    <script type="text/x-template" id="modal-template">
+      <transition name="modal">
+          <div class="modal-mask">
+              <div class="modal-wrapper">
+                <div class="modal-container">
+        
+                  <div class="modal-header">
+                    <slot name="header">
+                      <!-- <h3>Novo Grupo</h3> -->
+                    </slot>
+                  </div>
+        
+                  <div class="modal-body">
+                    <slot name="body">
+                      <!-- <h1>algo</h1> -->
+                      <input type="file" id="pdf" v-on:change="pdf">
+                      <canvas id="the-canvas"></canvas>
+                    </slot>
+                  </div>
+        
+                  <div class="modal-footer">
+                    <slot name="footer">
+                      
+                      <button class="modal-default-button" @click="$emit('close')">
+                        cancelar
+                      </button>
+                      <button class="modal-default-button" @click="$emit('close')">
+                        confirmar  
+                      </button>
+                    </slot>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-    </transition>
-  </script>
+      </transition>
+    </script>
   <nav class="header">
     <div class="logout">
         <button>
@@ -498,89 +449,69 @@
               home
             </i>
           </span>
+          <span class="fol" title="novo documento">
+            <i class="material-icons">
+              cloud_upload
+            </i>
+          </span>
       </div>
       <span class="logo"></span>
     </div>
   </nav>
-
   <div class="container">
    <div class="trio">
     <div class="perfil-container">
      <span class="perfil"></span>
-     <span>Professor responsável</span>
-     <div class="edit-btn-teach">
-         <button @click="showModal = true">alterar</button>
-         <button>adcionar</button>
-     </div>
+     <span>Nome do aluno</span>
     </div>
     <div class="documents-container">
      <div class="header-table">
+       <div class="tabs">
+        <span>Grupo 1</span>
+        <span>Grupo 2</span>
+        <span>Grupo 3</span>
+        <span>Todos</span>
+       </div>
       <div class="search-doc">
-        <input type="text" placeholder="pesquisar o curso">
+        <input type="text" placeholder="pesquise o documento">
       </div>
      </div>
       <div id="entry-box">
-        <div class="title-table"><h2>Cursos</h2></div>
-        <div class="add_course">
-          <button @click="showModal = true">novo curso</button>
-          <modal v-if="showModal" @close="showModal = false"></modal>
-        </div>
+        <div class="title-table"><h2>Grupo 1</h2></div>
         <div class="table">
          <table id="app">
           <thead>
            <tr>
-            <th>nome do curso</th>
+            <th>nome</th>
+            <th>item</th>
+            <th>pontos</th>
+            <th>data</th>
            </tr>
           </thead>
           <tbody>
-           <tr v-key:documents.id title="visualizar" v-for="degree in degrees">
-             <td>{{degree.name}}</td>
+           <tr v-key:documents.id title="visualizar" v-for="document in documents" @click="showModal = true">
+             <td>{{document.name}}</td>
+             <td>{{document.item}}</td>
+             <td>{{document.score}}</td>
+             <td>{{document.data}}</td>
            </tr>
           </tbody>
          </table>
+         <modal v-if="showModal" @close="showModal = false"></modal>
        </div>
    </div>
     </div>
-    <div class="group-container">
-     <h3>Grupos de Atividades</h3>
-     <button>adicionar grupo</button>
-     <div class="group-box">
-       <h4>grupo 1</h4>
-       <div class="description">
-         <p>atividades de complementação da formação social, humana
-          e cultural</p>
-       </div>
-       <div class="btns-items">
-         <button id="delete-group">excluir</button>
-         <button id="view-items">Itens &#9663;</button>
-       </div>
-     </div>
-     <div class="group-box">
-      <h4>grupo 2</h4>
-      <div class="description">
-        <p>atividades de cunho comunitário e de interesse coletivo</p>
-      </div>
-      <div class="btns-items">
-        <button id="delete-group">excluir</button>
-        <button id="view-items">Itens &#9663;</button>
-      </div>
-    </div>
-    <div class="group-box">
-      <h4>grupo 3</h4>
-      <div class="description">
-        <p>atividades de iniciação científica, tecnológica e de formação
-          profissional</p>
-      </div>
-      <div class="btns-items">
-        <button id="delete-group">excluir</button>
-        <button id="view-items">Itens &#9663;</button>
-      </div>
-    </div>
-       
+    <div class="progress-container">
+     <h3>Progresso</h3>
+      <figure>
+        <img src="./img/progress_1.png" alt="progresso do grupo 1">
+        <figcaption><a href="#"><strong>Grupo 1:</strong> 20 pontos</a></figcaption>
+     </figure>
     </div>
    </div>
   </div>
   <footer>
+    
     <p>eu sou o rodape</p>
   </footer>
 </body>
@@ -591,18 +522,71 @@
   var documents = new Vue({
     el: '.container',
     data: {
-      degrees: [
-        {id: 0, name: 'engenharia de software', },
-        {id: 1, name: 'engenharia de automação e controle', },
-        {id: 2, name: 'engenharia elétrica-industrial', },
-        {id: 3, name: 'engenharia da computação', },
-        {id: 4, name: 'engenharia mecânica', },
-        {id: 5, name: 'engenharia eletrônica', },
-        {id: 6, name: 'análise e desenvolvimento de sistemas', },
-        {id: 7, name: 'licenciatura em matemática', },
+      documents: [
+        {id: 0, name: 'atividade 1', item: 'I', score: 5, data: '12/09/2018'},
+        {id: 1, name: 'atividade 1', item: 'II', score: 5, data: '12/09/2018'},
+        {id: 2, name: 'atividade 1', item: 'I', score: 5, data: '12/09/2018'},
+        {id: 3, name: 'atividade 1', item: 'IV', score: 5, data: '12/09/2018'},
+        {id: 0, name: 'atividade 1', item: 'I', score: 5, data: '12/09/2018'},
+        {id: 1, name: 'atividade 1', item: 'II', score: 5, data: '12/09/2018'},
+        {id: 2, name: 'atividade 1', item: 'I', score: 5, data: '12/09/2018'},
+        {id: 3, name: 'atividade 1', item: 'IV', score: 5, data: '12/09/2018'},
       ],
-      showModal: false
-    }
+    showModal: true,
+    showFile: false,
+    pdf: ''
+   },
+   methods: {
+     catchPdf: function(value) {
+      /*  var file = event.target.files[0]
+       console.log(file) */
+       console.log("entrou ai")
+       console.log(value)
+     }
+   },
+   /* created() {
+    var fileElement = document.getElementById("pdf")
+    fileElement.onchange = function(event) {
+      console.log("foiii")
+      this.showFile = true
+      var file = event.target.file[0]
+      var fileReader = new FileReader()
+      
+      fileReader.onload = function() {
+        var tipedarray = new Uint8Array(this.result)
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
+          pdfjsLib.getDocument(tipedarray).then(doc => {
+            doc.getPage(1).then(page => {
+              var scale = 1.5
+              var viewport = page.getViewport({scale: scale})
+              console.log(viewport.height)
+              console.log(viewport.width)
+              var canvas = document.getElementById("the-canvas")
+              var context = canvas.getContext("2d")
+              canvas.height = viewport.height
+              canvas.width = viewport.width
+
+              var renderContext = {
+                canvasContext: context,
+                viewport: viewport
+              }
+              var renderTask = page.render(renderContext)
+              renderTask.promise.then(() => {
+                console.log('page rendered')
+              })
+            }, (reason) => {
+              console.error(reason)
+            })
+          })
+      }
+      fileReader.readAsArrayBuffer(file )
+      
+    } 
+    
+   } */ 
   })
 </script>
-</html>s
+<script>
+  
+</script>
+</html>

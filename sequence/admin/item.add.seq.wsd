@@ -7,10 +7,10 @@ entity ItemEntity
 Admin ->> grupo: tentar cadastrar um item
 activate Admin
 activate grupo
-grupo -> ItemController: solicitar cadastro do grupo
+grupo -> ItemController: solicitar cadastro do item
 deactivate grupo
 activate ItemController
-ItemController -> ItemEntity: confirmar cadastro do grupo
+ItemController -> ItemEntity: confirmar cadastro do item
 deactivate ItemController
 activate ItemEntity
 ItemEntity -->> ItemController: mensagem de confirmação

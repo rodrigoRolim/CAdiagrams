@@ -150,15 +150,7 @@
      </div>
    </div>
    <div class="form-row-course">
-<!--      <div class="input-label">
-       <label for="course">responsável pelo curso</label>
-       <select name="course" id="couse">
-         <option value="id_eng">engenharia de software</option>
-         <option value="id_eng_cop">engenharia de computação</option>
-         <option value="id_ana">análise de sistemas</option>
-         <option value="id_mathematics">matematica</option>
-       </select>
-     </div> -->
+
      <div class="input-label">
        <label for="ra">registro acadêmico</label>
        <input v-model="professor.siape" type="text" name="ra" id="ra"/>
@@ -180,7 +172,7 @@
    </div>
    <div class="form-row">
     <div class="actions">
-      <a href="#" class="altera_senha">alterar senha</a>
+      <!-- <a href="#" class="altera_senha">alterar senha</a> -->
       <button @click="codition = true">editar</button>
       <button v-bind:disabled="true" type="submit">confirmar</button>
      </div>

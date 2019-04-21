@@ -3,12 +3,7 @@ left to right direction
 skinparam packagestyle rectangle
 actor admin
 rectangle {
-    admin -> (cadastrar professor)
-    (cadastrar professor) ..> (autenticar professor no SIAPE): include
-    note bottom of (autenticar professor no SIAPE)
-        SIAPE (sistema integrado de administração de recursos humanos)
-        reune os cadastros dos servidores públicos federais e pensionistas.
-    end note
-    (cadastrar professor) .> (efetuar login): <<includes>>
+    admin -> (substituir professor)
+    (substituir professor) .> (cadastrar professor): <<includes>>
 }
 @enduml

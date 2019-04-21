@@ -311,6 +311,11 @@
     color: white;
     font-weight: bold;
   }
+  #edit-group {
+    background-color: rgba(84, 95, 252, 0.678);
+    color: white;
+    font-weight: bold;
+  }
   .perfil {
    border: 1px solid;
    width: 140px;
@@ -448,18 +453,19 @@
       
                 <div class="modal-header">
                   <slot name="header">
-                    <h3>Novo Curso</h3>
+                    <h3>Gerenciamento de Curso</h3>
                   </slot>
                 </div>
       
                 <div class="modal-body">
                   <slot name="body">
-                    <label for="name">nome do curso</label>
-                    <input type="text" name="name" id="name" v-model="name_course">
-                    <label for="professor">professor responsável</label>
+                    <p>Tem certeza que deseja excluir este curso</p>
+                  <!--   <label for="name">nome do curso</label>
+                    <input type="text" name="name" id="name" v-model="name_course"> -->
+                  <!--   <label for="professor">professor responsável</label>
                     <select name="professor" id="professor">
                       <option value="0">rodrigo rolim</option>
-                    </select>
+                    </select> -->
                   </slot>
                 </div>
       
@@ -505,7 +511,7 @@
      <span class="perfil"></span>
      <span>Professor responsável</span>
      <div class="edit-btn-teach">
-         <button>substituir</button>
+         <button>alterar</button>
          <button>adcionar</button>
      </div>
     </div>
@@ -525,12 +531,14 @@
          <table id="app">
           <thead>
            <tr>
-            <th>nome do curso</th>
+            <th style="width: 90%">nome do curso</th>
+            <th style="width: 10%">excluir</th>
            </tr>
           </thead>
           <tbody>
            <tr v-key:documents.id title="visualizar" v-for="degree in degrees">
-             <td>{{degree.name}}</td>
+             <td style="width: 90%">{{degree.name}}</td>
+             <td style="width: 10%">X</td>
            </tr>
           </tbody>
          </table>
@@ -547,6 +555,7 @@
           e cultural</p>
        </div>
        <div class="btns-items">
+         <button id="edit-group">editar</button>
          <button id="delete-group">excluir</button>
          <button id="view-items">Itens &#9663;</button>
        </div>
@@ -557,6 +566,7 @@
         <p>atividades de cunho comunitário e de interesse coletivo</p>
       </div>
       <div class="btns-items">
+        <button id="edit-group">editar</button>
         <button id="delete-group">excluir</button>
         <button id="view-items">Itens &#9663;</button>
       </div>
@@ -568,6 +578,7 @@
           profissional</p>
       </div>
       <div class="btns-items">
+        <button id="edit-group">editar</button>
         <button id="delete-group">excluir</button>
         <button id="view-items">Itens &#9663;</button>
       </div>

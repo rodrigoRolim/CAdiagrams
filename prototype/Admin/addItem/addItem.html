@@ -460,8 +460,16 @@
     flex-direction: column;
     align-items: flex-start;
   }
-  .items {
-
+  .items li {
+    margin: 5px;
+  }
+  .items li button{
+    margin-left: 50px;
+  }
+  #edit-group {
+    background-color: rgba(84, 95, 252, 0.678);
+    color: white;
+    font-weight: bold;
   }
  </style>
 </head>
@@ -474,14 +482,13 @@
       
                 <div class="modal-header">
                   <slot name="header">
-                    <h3>Novo Item</h3>
+                    <h3>Excluindo Item</h3>
                   </slot>
                 </div>
       
                 <div class="modal-body">
                   <slot name="body">
-                    <label for="name">descrição</label>
-                    <textarea name="name" id="name" cols="30" rows="10"></textarea>
+                    <p>Deseja mesmo excluir este item?</p>
                   </slot>
                 </div>
       
@@ -527,7 +534,8 @@
      <span class="perfil"></span>
      <span>Professor responsável</span>
      <div class="edit-btn-teach">
-        <button @click="showModal = true">substituir</button>
+       <button>alterar</button>
+        <button @click="showModal = true">adicionar</button>
      </div>
     </div>
     <div class="documents-container">
@@ -568,6 +576,7 @@
           e cultural</p>
        </div>
        <div class="btns-items">
+         <button id="edit-group">editar</button>
          <button id="delete-group">excluir</button>
          <button id="view-items" @click="showItens = true">Itens &#9663;</button>
        </div>
@@ -576,14 +585,14 @@
           <button @click="showModal = true">&#10010;</button>
         </div>
         <ol class="items">
-          <li>asdasdasd</li>
-          <li>asddfasdas</li>
-          <li>asdasdasd</li>
-          <li>asddfasdas</li>
-          <li>asdasdasd</li>
-          <li>asddfasdas</li>
-          <li>asdasdasd</li>
-          <li>asddfasdas</li>
+          <li><span>asdasdasd</span> <button>X</button></li>
+          <li><span>asdasdasd</span> <button>X</button></li>
+          <li><span>asdasdasd</span> <button>X</button></li>
+          <li><span>asdasdasd</span> <button>X</button></li>
+          <li><span>asdasdasd</span> <button>X</button></li>
+          <li><span>asdasdasd</span> <button>X</button></li>
+          <li><span>asdasdasd</span> <button>X</button></li>
+          <li><span>asdasdasd</span> <button>X</button></li>
         </ol>
       </div>
      </div>
@@ -593,6 +602,7 @@
         <p>atividades de cunho comunitário e de interesse coletivo</p>
       </div>
       <div class="btns-items">
+          <button id="edit-group">editar</button>
         <button id="delete-group">excluir</button>
         <button id="view-items" >Itens &#9663;</button>
       </div>
@@ -604,6 +614,7 @@
           profissional</p>
       </div>
       <div class="btns-items">
+          <button id="edit-group">editar</button>
         <button id="delete-group">excluir</button>
         <button id="view-items">Itens &#9663;</button>
       </div>

@@ -437,6 +437,11 @@
     border: 1px solid;
     padding: 8px 5px;
   }
+  #edit-group {
+    background-color: rgba(84, 95, 252, 0.678);
+    color: white;
+    font-weight: bold;
+  }
  </style>
 </head>
 <body>
@@ -448,22 +453,18 @@
       
                 <div class="modal-header">
                   <slot name="header">
-                    <h3>Novo Professor responsável</h3>
+                    <h3>Editar Grupo</h3>
                   </slot>
                 </div>
       
                 <div class="modal-body">
                   <slot name="body">
-                    <label for="name">nome</label>
-                    <input type="text" name="name" id="name" v-model="name_course">
-                    <label for="siape">siape</label>
+                    <label for="name">decrição</label>
+                    <textarea name="name" id="name" cols="30" rows="10"></textarea>
+                    <label for="siape">pontuação mínima</label>
                     <input type="text" name="siape" id="siape">
-                    <label for="email">email</label>
+                    <label for="email">pontuação máxima</label>
                     <input type="text" name="email" id="email">
-                    <label for="password">senha</label>
-                    <input type="text" name="password" id="password">
-                    <label for="confirm-password">confirmar senha</label>
-                    <input type="text" name="confirm-password" id="confirm-password">
                   </slot>
                 </div>
       
@@ -509,8 +510,8 @@
      <span class="perfil"></span>
      <span>Professor responsável</span>
      <div class="edit-btn-teach">
-         <button @click="showModal = true">alterar</button>
-         <button>adcionar</button>
+        <button>alterar</button>
+         <button @click="showModal = true">adicionar</button>
      </div>
     </div>
     <div class="documents-container">
@@ -543,7 +544,7 @@
     </div>
     <div class="group-container">
      <h3>Grupos de Atividades</h3>
-     <button>adicionar grupo</button>
+     <button @click="showModal = true">adicionar grupo</button>
      <div class="group-box">
        <h4>grupo 1</h4>
        <div class="description">
@@ -551,9 +552,25 @@
           e cultural</p>
        </div>
        <div class="btns-items">
+         <button id="edit-group">editar</button>
          <button id="delete-group">excluir</button>
          <button id="view-items">Itens &#9663;</button>
        </div>
+       <div v-show="showItens">
+        <div class="header">
+          <button>+</button>
+        </div>
+        <ol>
+          <li><span>asdasdasd       </span><span><button>X</button></span></li>
+          <li><span>asdasdasd       </span><span>X</span></li>
+         <li><span>asdasdasd        </span><span>X</span></li>
+         <li><span>asdasdasd        </span><span>X</span></li>
+         <li><span>asdasdasd        </span><span>X</span></li>
+         <li><span>asdasdasd        </span><span>X</span></li>
+         <li><span>asdasdasd        </span><span>X</span></li>
+         <li><span>asdasdasd        </span><span>X</span></li>
+        </ol>
+      </div>
      </div>
      <div class="group-box">
       <h4>grupo 2</h4>
@@ -561,8 +578,21 @@
         <p>atividades de cunho comunitário e de interesse coletivo</p>
       </div>
       <div class="btns-items">
+          <button id="edit-group">editar</button>
         <button id="delete-group">excluir</button>
-        <button id="view-items">Itens &#9663;</button>
+        <button id="view-items" @click="showItens = true">Itens &#9663;</button>
+      </div>
+      <div v-show="showItens">
+        <ol>
+         <li><span>asdasdasd</span><span>X</span></li>
+          <li>asddfasdas</li>
+         <li><span>asdasdasd</span><span>X</span></li>
+          <li>asddfasdas</li>
+         <li><span>asdasdasd</span><span>X</span></li>
+          <li>asddfasdas</li>
+         <li><span>asdasdasd</span><span>X</span></li>
+          <li>asddfasdas</li>
+        </ol>
       </div>
     </div>
     <div class="group-box">
@@ -572,8 +602,21 @@
           profissional</p>
       </div>
       <div class="btns-items">
+          <button id="edit-group">editar</button>
         <button id="delete-group">excluir</button>
         <button id="view-items">Itens &#9663;</button>
+      </div>
+      <div v-show="showItens">
+        <ol>
+         <li><span>asdasdasd</span><span>X</span></li>
+          <li>asddfasdas</li>
+         <li><span>asdasdasd</span><span>X</span></li>
+          <li>asddfasdas</li>
+         <li><span>asdasdasd</span><span>X</span></li>
+          <li>asddfasdas</li>
+         <li><span>asdasdasd</span><span>X</span></li>
+          <li>asddfasdas</li>
+        </ol>
       </div>
     </div>
        
@@ -601,8 +644,9 @@
         {id: 6, name: 'análise e desenvolvimento de sistemas', },
         {id: 7, name: 'licenciatura em matemática', },
       ],
-      showModal: false
+      showModal: false,
+      showItens: false
     }
   })
 </script>
-</html>s
+</html>
