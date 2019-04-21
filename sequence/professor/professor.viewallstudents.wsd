@@ -8,7 +8,6 @@ entity StudentEntity
 'entity DocumentEntity
 activate Professor
 Professor -> home: visualizar a lista de alunos
-deactivate Professor
 activate home
 home ->> StudentController: requisitar lista de alunos
 'deactivate home
@@ -24,5 +23,4 @@ deactivate StudentController
 'activate home
 home --> Professor: exibir lista de alunos
 deactivate home
-activate Professor
 @enduml

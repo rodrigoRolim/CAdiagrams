@@ -19,9 +19,9 @@ Professor ->> documentos: Expressar motivo da reprovação
 Professor ->> documentos: confirmar avaliação
 documentos ->> controller: enviar avaliação
 activate controller 
-controller ->> model: atualizar documento com o valor da avaliação
+controller -> model: atualizar documento com o valor da avaliação
 activate model
-model -->> controller: atualizado
+model --> controller: atualizado
 deactivate model
 controller -->> documentos: avaliação confirmada
 deactivate controller

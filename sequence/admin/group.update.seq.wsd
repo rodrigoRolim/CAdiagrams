@@ -7,12 +7,14 @@ entity GroupEntity
 Admin ->> grupo: tentar atualizar um grupo
 activate Admin
 activate grupo
-grupo -> GroupController: solicitar atualização do grupo
+grupo ->> GroupController: solicitar atualização do grupo
 deactivate grupo
 activate GroupController
 GroupController -> GroupEntity: confirmar atualização do grupo
+activate GroupEntity
 deactivate GroupController
-GroupEntity -->> GroupController: mensagem de confirmação
+GroupEntity --> GroupController: mensagem de confirmação
+deactivate GroupEntity
 activate GroupController
 GroupController -->> grupo: enviar mensagem de confirmação
 deactivate GroupController

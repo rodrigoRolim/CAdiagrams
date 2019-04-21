@@ -4,9 +4,9 @@ boundary "Tela de login" as login
 control  ProfessorController
 entity ProfessorEntity
 
-Professor -> login: Solicitar acesso a conta
+Professor ->> login: Solicitar acesso a conta
 activate login
-login -> ProfessorController: Requisitar Autenticação
+login ->> ProfessorController: Requisitar Autenticação
 activate ProfessorController
 
 ProfessorController -> ProfessorEntity: Buscar professor
@@ -17,11 +17,11 @@ ProfessorController -> ProfessorEntity: Buscar professor
         'deactivate ProfessorController
          ProfessorController -> ProfessorController: Verificar dados do professor
         alt dados válidos
-            ProfessorController --> login: Professor Autenticado
+            ProfessorController -->> login: Professor Autenticado
             login --> Professor: Acesso permitido 
         else dados inválidos
             
-            login <-- ProfessorController: Não Autenticado
+            login <<-- ProfessorController: Não Autenticado
             login --> Professor: Acesso não permitido
         end
        

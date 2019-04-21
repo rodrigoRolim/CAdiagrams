@@ -7,12 +7,14 @@ entity GroupEntity
 Admin ->> grupo: tentar deletar um grupo
 activate Admin
 activate grupo
-grupo -> GroupController: solicitar exclusão do grupo
+grupo ->> GroupController: solicitar exclusão do grupo
 deactivate grupo
 activate GroupController
 GroupController -> GroupEntity: confirmar exclusão de grupo
+activate GroupEntity
 deactivate GroupController
-GroupEntity -->> GroupController: mensagem de confirmação
+GroupEntity --> GroupController: mensagem de confirmação
+deactivate GroupEntity
 activate GroupController
 GroupController -->> grupo: enviar mensagem de confirmação
 deactivate GroupController

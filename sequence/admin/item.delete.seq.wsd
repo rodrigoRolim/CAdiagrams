@@ -7,13 +7,13 @@ entity ItemEntity
 Admin ->> grupo: tentar excluir um item
 activate Admin
 activate grupo
-grupo -> ItemController: solicitar exclusão do item
+grupo ->> ItemController: solicitar exclusão do item
 deactivate grupo
 activate ItemController
 ItemController -> ItemEntity: confirmar exclusão do item
 deactivate ItemController
 activate ItemEntity
-ItemEntity -->> ItemController: mensagem de confirmação
+ItemEntity --> ItemController: mensagem de confirmação
 deactivate ItemEntity
 activate ItemController
 ItemController -->> grupo: enviar mensagem de confirmação

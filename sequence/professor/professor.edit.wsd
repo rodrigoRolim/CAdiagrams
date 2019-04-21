@@ -12,7 +12,7 @@ activate perfil
 perfil ->> edite: direcionar para edicao
 deactivate perfil
 activate edite
-edite -> ProfessorController: confirma alteração de dados
+edite ->> ProfessorController: confirma alteração de dados
 deactivate edite
 activate ProfessorController
 ProfessorController -> ProfessorEntity: atualizar dados
@@ -21,7 +21,7 @@ deactivate ProfessorController
 ProfessorEntity --> ProfessorController: atualização confirmada
 deactivate ProfessorEntity
 activate ProfessorController
-ProfessorController --> edite: mensagem de confirmação
+ProfessorController -->> edite: mensagem de confirmação
 activate edite
 deactivate ProfessorController
 edite -->> Professor: exibir mensagem de confirmação

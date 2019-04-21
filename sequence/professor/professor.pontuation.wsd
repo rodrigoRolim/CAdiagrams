@@ -5,14 +5,14 @@ control DocumentController as documents <<server page>>
 entity DocumenteEntity as model <<server page>>
 
 activate Professor
-Professor -> home: visualizar lista de alunos
+Professor ->> home: visualizar lista de alunos
 deactivate Professor
 activate home
 home ->> documents: requisitar lista de alunos
 activate documents
-documents ->> model: buscar por lista de alunos
+documents -> model: buscar por lista de alunos
 activate model
-model -->> documents: retorna lista de alunos
+model --> documents: retorna lista de alunos
 deactivate model
 documents -->> home: responder com lista de alunos
 deactivate documents
