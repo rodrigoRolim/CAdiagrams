@@ -1,9 +1,0 @@
-@startuml
-left to right direction
-skinparam packagestyle rectangle
-actor admin
-rectangle {
-    admin -> (substituir professor)
-    (substituir professor) .> (cadastrar professor): <<includes>>
-}
-@enduml

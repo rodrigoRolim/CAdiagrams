@@ -2,7 +2,7 @@
 left to right direction
 skinparam packagestyle rectangle
 :Rotina de calculo de pontuçao: as pontuation <<application>>
-rectangle {
+rectangle "realizar calculo de pontuação"{
     pontuation -- (calcular pontuação)
     (calcular pontuação) <|-- (calcular pontuação do grupo 1) 
     (calcular pontuação) <|-- (calcular pontuação do grupo 2) 

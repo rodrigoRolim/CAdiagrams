@@ -1,5 +1,0 @@
-@startuml
-left to right direction
-actor Admin
-Admin -- (editar informações do grupo)
-@enduml

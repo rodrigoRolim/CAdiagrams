@@ -1,6 +1,0 @@
-@startuml
-left to right direction
-actor Admin
-Admin -- (acessar itens de um grupo)
-Admin -- (adicionar novo item ao grupo)
-@enduml

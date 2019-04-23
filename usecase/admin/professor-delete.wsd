@@ -1,7 +1,0 @@
-@startuml
-left to right direction
-admin -- (visualizar lista de professores)
-admin -- (excluir professor)
-(excluir professor) ..> (efetuar login): <<includes>>
-(visualizar lista de professores) ..> (efetuar login): <<includes>>
-@enduml

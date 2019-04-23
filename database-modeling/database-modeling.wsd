@@ -32,14 +32,15 @@ class professor {
     siape: string
     name: string
     responsible: course
+    activate: boolean
 }
 class course {
     _id: number
     name: string
 }
-documents o-- group
+documents -- group
 group o-- items
-documents --o student
+documents -- student
 student -- course
 student -- professor
 professor --- course 
