@@ -1,8 +1,0 @@
-@startuml
-left to right direction
-skinparam packagestyle rectangle
-actor :funcao calculadora de pontos: as system
-rectangle pontuação {
-    system -- (calcular pontos)
-}  
-@enduml
